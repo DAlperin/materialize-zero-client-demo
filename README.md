@@ -1,54 +1,20 @@
-# React + TypeScript + Vite
+# Materialize + Zero
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is an example for using materialize with zero on the frontend. Follow the steps from the [Change Source](https://github.com/DAlperin/materialize-zero-change-source) first to get the backend running.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Everything here is basically ripped one for one from (zeros docs)[https://zero.rocicorp.dev/docs/add-to-existing-project]. You should def use these docs as a reference for how to write the schema.ts file and how to use the zero client.
 
-## Expanding the ESLint configuration
+1. Copy `.env.example` to `.env` and fill in the values.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+   - Make sure the connection string points to the same database as the one you used in the Change Source!
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. Run `npm install` to install the dependencies.
+3. Update `schema.ts` to match your database schema.
+4. Update the code in `src/App.tsx` to match your needs.
+5. Run `npm run updatePermissions` to update the permissions in the database based on the permissions in your schema. (This is the only materialize specific step)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+   - This will fail if you haven't followed the steps from the Change Source!
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+6. Run `npm run dev` to start the development server.

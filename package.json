@@ -7,15 +7,20 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:scripts": "tsc -p tsconfig.scripts.json",
+    "updatePermissions": "npm run build:scripts && node ./dist/scripts/updatePermissions.js"
   },
   "dependencies": {
     "@rocicorp/zero": "^0.18.2025040300",
+    "dotenv": "^16.5.0",
+    "pg": "^8.14.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/pg": "^8.11.13",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",

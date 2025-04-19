@@ -1,4 +1,4 @@
-import { createSchema, table, string, definePermissions, ANYONE_CAN_DO_ANYTHING, number } from '@rocicorp/zero';
+import { createSchema, table, string, definePermissions, ANYONE_CAN_DO_ANYTHING, number, ANYONE_CAN, NOBODY_CAN } from '@rocicorp/zero';
 
 const messages = table('messages').columns({
     id: number(),
@@ -26,7 +26,12 @@ export const schema = createSchema({
 });
 
 export const permissions = definePermissions<unknown, Schema>(schema, () => ({
-    messages: ANYONE_CAN_DO_ANYTHING,
+    messages: {
+        row: {
+            select: ANYONE_CAN,
+            delete: NOBODY_CAN
+        }
+    },
     current_messages: ANYONE_CAN_DO_ANYTHING,
     expired_message_count: ANYONE_CAN_DO_ANYTHING,
 }));

@@ -34,6 +34,7 @@ function App() {
         <ul>
           {messages.map((message) => (
             <li key={message.id}>
+              <p>{message.id}</p>
               <p>from: {message.author}</p>
               <p>channel: {message.channel}</p>
               <p>time: {message.time}</p>
@@ -47,6 +48,7 @@ function App() {
         <ul>
           {currentMessages.map((message) => (
             <li key={message.id}>
+              <p>{message.id}</p>
               <p>from: {message.author}</p>
               <p>channel: {message.channel}</p>
               <p>time: {message.time}</p>
