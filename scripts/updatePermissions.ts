@@ -21,7 +21,8 @@ async function updatePermissions() {
 
         // Step 3: Read the file and execute it against the PostgreSQL connection
         const perm = readFileSync(outputFile, 'utf-8');
-        const sqlQuery = `UPDATE "zero.permissions" set permissions = '${perm}'`;
+        const deleteQuery = `DELETE FROM "zero.permissions"`;
+        const sqlQuery = `INSERT into "zero.permissions" values ('${perm}', NULL)`;
         const connectionString = process.env.MATERIALIZE_CONNECTION_STRING;
 
         if (!connectionString) {
@@ -30,6 +31,7 @@ async function updatePermissions() {
 
         const client = new Client({ connectionString });
         await client.connect();
+        await client.query(deleteQuery);
         await client.query(sqlQuery);
         await client.end();
 
