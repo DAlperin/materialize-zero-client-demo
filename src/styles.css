@@ -1,0 +1,15 @@
+.messagesContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10;
+  margin: auto;
+  padding-top: 10px;
+  padding-bottom:10px;
+  justify-items: center;
+  flex-wrap: wrap;
+}
+
+.Potato {
+    display: flex;
+    margin: 24px;
+}

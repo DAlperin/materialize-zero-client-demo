@@ -1,39 +1,22 @@
 import { createSchema, table, string, definePermissions, ANYONE_CAN_DO_ANYTHING, number, ANYONE_CAN, NOBODY_CAN } from '@rocicorp/zero';
 
-const messages = table('messages').columns({
-    id: number(),
-    author: string(),
-    channel: string(),
-    time: number(),
-    message: string(),
-}).primaryKey('id');
-
-const current_messages = table('current_messages').columns({
-    id: number(),
-    author: string(),
-    channel: string(),
-    time: number(),
-    message: string(),
-}).primaryKey('id');
-
-const expired_message_count = table('expired_message_count').columns({
+const top_posts = table('top_posts').columns({
+    rkey: string(),
     count: number(),
-}).primaryKey('count');
-
+    did: string(),
+}).primaryKey('rkey');
 
 export const schema = createSchema({
-    tables: [messages, current_messages, expired_message_count],
+    tables: [top_posts],
 });
 
 export const permissions = definePermissions<unknown, Schema>(schema, () => ({
-    messages: {
+    top_posts: {
         row: {
             select: ANYONE_CAN,
             delete: NOBODY_CAN
         }
     },
-    current_messages: ANYONE_CAN_DO_ANYTHING,
-    expired_message_count: ANYONE_CAN_DO_ANYTHING,
 }));
 
 export type Schema = typeof schema;
